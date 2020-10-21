@@ -4,6 +4,7 @@
 const { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler } = require('discord-akairo');
 const { settings, directoryRelated } = require('../config.json');
 const path = require('path');
+const { Collection } = require('discord.js')
 /*
 const fs = require('fs')
 
@@ -61,6 +62,10 @@ class FIVEMHEROCLIENT extends AkairoClient {
         }).loadAll();
         return super.login(token)
     }
+
+    queue = new Collection();
+    vote = new Collection();
+    wait = require('util').promisify(setTimeout);
 }
 
 module.exports.FIVEMHEROCLIENT = FIVEMHEROCLIENT;

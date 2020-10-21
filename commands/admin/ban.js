@@ -27,7 +27,7 @@ class BanCommand extends Command {
 
     async exec(message, args) {
         const allowedRoles = ["754478524248752159", "754475345931141133", "754475146038870167", "754474630953304116"]
-            if (allowedRoles.some(id => message.member.roles.cache.has(allowedRoles[i]))) {
+            if (allowedRoles.some(id => message.member.roles.cache.has(id))) {
                 if (!args.member) {
                     return message.reply('Please mention a member of the server');
                   }
