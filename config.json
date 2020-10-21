@@ -1,0 +1,23 @@
+{
+    "secrets": {
+        "token": "NzQ0MDMzMDAyOTQxNTc5Mjk0.XzdUuw.MH5YQFQhJ-lGNTmvaf8XzIP6uvM",
+        "YT_API": "AIzaSyD0a91VNH-RIhphJ1kofmPod-hBD2aPMa8"
+    },
+    "directoryRelated": {
+        "commandsDir": "./commands/",
+        "listnersDir": "./events/listners/",
+        "inhibitorsDir": "./events/inhibitor/"
+    },
+    "game": {
+        "playing": ["FiveM", "with Greysilly7 and Ranger m3", "with you", "SOMEONE SEND HELP PLEASE, IM STUCK IN THIS BOT", "You can support me with the donate command!"],
+        "watching": ["you", "everything you pepes type"]
+    },
+    "settings": {
+        "errorChannel": "",
+        "prefix": "!",
+        "ownerIDs": "688238554769653771",
+        "invite": "https://discord.gg/tBbdGT6",
+        "exposeStats": false,
+        "QUEUE_LIMIT": 100
+    }
+}
