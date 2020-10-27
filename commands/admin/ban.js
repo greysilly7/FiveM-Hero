@@ -30,7 +30,7 @@ class BanCommand extends Command {
 
     async exec(message, args) {
         message.delete();
-        const allowedRoles = ["754478524248752159", "754475345931141133", "754475146038870167", "754474630953304116"]
+        const allowedRoles = ['754478524248752159', '754475345931141133', '754475146038870167', '754474630953304116']
             if (allowedRoles.some(id => message.member.roles.cache.has(id))) {
                 if (!args.member) {
                     return message.reply('Please mention a member of the server');
@@ -39,13 +39,13 @@ class BanCommand extends Command {
                     return message.reply('I cannot ban this user! Do they have a higher role? Do I have ban permissions?');
                   }
                                   
-                  const StaffLogEmbed = new MessageEmbed;
+                  const StaffLogEmbed = new MessageEmbed();
                   StaffLogEmbed.setThumbnail(args.member.avatarURL);
                   StaffLogEmbed.setTitle('Staff Action:', 'Ban');
                   StaffLogEmbed.setAuthor('Banned by:', message.author);
                   StaffLogEmbed.addField('Member Banned', `${args.member.username}`)
                   StaffLogEmbed.addField('Ban Reason', `${args.reason}`);
-                  const ChannelEmbed = new MessageEmbed;
+                  const ChannelEmbed = new MessageEmbed();
                   ChannelEmbed.setThumbnail(args.member.avatarURL);
                   ChannelEmbed.setTitle('User Banned');
                   ChannelEmbed.setAuthor(`${args.member.username}`);
@@ -58,7 +58,7 @@ class BanCommand extends Command {
                     message.guild.channels.cache.get(settings.staffLogs).send(StaffLogEmbed);
                     message.channel.send(ChannelEmbed);
             } else {
-                return message.channel.send(`Sorry <@${message.author.id}>, you do not have the permission to run this command!`);
+                return message.channel.send(`Sorry ${message.author}, you do not have the permission to run this command!`);
             }
         }
     }

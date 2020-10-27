@@ -23,7 +23,7 @@ class FIVEMHEROCLIENT extends AkairoClient {
         });
 
         this.commandHandler = new CommandHandler(this, {
-            directory: path.join(directoryRelated.commandsDir),
+            directory: directoryRelated.commandsDir,
             prefix: settings.prefix,
             argumentDefaults: {
 				prompt: {
@@ -65,6 +65,7 @@ class FIVEMHEROCLIENT extends AkairoClient {
 
     queue = new Collection();
     vote = new Collection();
+    entries = new Collection();
     wait = require('util').promisify(setTimeout);
 }
 

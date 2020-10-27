@@ -25,7 +25,6 @@ class errorListener extends Listener {
 		if (message.guild) errorEmbed.addField('Guild', `${message.guild.name} (${message.guild.id})`);
 
 		message.channel.send(errorEmbed);
-
 		//Get current date
 		let today = new Date();
 		let dd = today.getDate();
@@ -43,8 +42,7 @@ class errorListener extends Listener {
 		let time = new Date();
 		let currentTime = time.getHours() + '_' + time.getMinutes() + '_' + time.getSeconds();
 		//Create folder with current date
-		/*
-		mkdirp(`./error/${today}`, function (err){
+		mkdirp(`./error/${today}`, (err) => {
 			if (err) {
 				console.error(err);
 			}
@@ -56,7 +54,6 @@ class errorListener extends Listener {
 				console.log(`Logged error succesfully in /error/${today}/${currentTime}.txt`);
 			});
 		});
-		*/
 	}
 }
 

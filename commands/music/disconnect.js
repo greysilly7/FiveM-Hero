@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 class DisconnectCommand extends Command {
 	constructor() {
 		super('disconnect', {
-			aliases: ['disconnect', 'leave', 'stop'],
+			aliases: ['disconnect', 'leave'],
 			category: 'music',
 			clientPermissions: ['SPEAK', 'SEND_MESSAGES'],
 			description: {
