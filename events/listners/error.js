@@ -42,6 +42,7 @@ class errorListener extends Listener {
 		let time = new Date();
 		let currentTime = time.getHours() + '_' + time.getMinutes() + '_' + time.getSeconds();
 		//Create folder with current date
+		/*
 		mkdirp(`./error/${today}`, (err) => {
 			if (err) {
 				console.error(err);
@@ -54,6 +55,7 @@ class errorListener extends Listener {
 				console.log(`Logged error succesfully in /error/${today}/${currentTime}.txt`);
 			});
 		});
+		*/
 	}
 }
 

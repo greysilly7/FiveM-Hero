@@ -23,7 +23,7 @@ class InviteCommand extends Command {
         const embed = new MessageEmbed();
         embed.setAuthor(`${this.client.user.tag}`).setTitle(`Here is a invite to the discord server: ${settings.invite}.`).setThumbnail('https://cdn.discordapp.com/attachments/760853655192207381/768240668471590922/scdiscord.png');
         message.delete();
-        return message.channel.send(embed);
+        return message.util.send(embed);
     }
 }
 

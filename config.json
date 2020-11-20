@@ -1,6 +1,6 @@
 {
     "secrets": {
-        "token": "NzQ0MDMzMDAyOTQxNTc5Mjk0.XzdUuw.MH5YQFQhJ-lGNTmvaf8XzIP6uvM",
+        "token": "NzQ0MDMzMDAyOTQxNTc5Mjk0.XzdUuw.FYvO3byuFrJlIEFsHJqidOCadrQ",
         "YT_API": "AIzaSyD0a91VNH-RIhphJ1kofmPod-hBD2aPMa8"
     },
     "directoryRelated": {
@@ -15,10 +15,16 @@
     "settings": {
         "errorChannel": "",
         "prefix": "!",
-        "ownerIDs": "688238554769653771",
+        "ownerIDs": 688238554769653771,
         "invite": "https://discord.gg/tBbdGT6",
-        "exposeStats": false,
         "QUEUE_LIMIT": 100,
-        "staffLogs": "768339345819303956"
+        "staffLogs": 768339345819303956,
+        "experimental_crap": true
+    },
+    "panel": {
+        "port": 11500,
+        "clientID": "744033002941579294",
+        "clientSecret": "GSAer8cgsR4TEGpPZv84p8u239GkWCTV",
+        "domain": "http://greysilly7.ddns.net"
     }
 }

@@ -21,13 +21,13 @@ class SkipCommand extends Command {
         if (!channel) {
             // IF AUTHOR IS NOT IN VOICE CHANNEL
             embed.setAuthor('YOU NEED TO BE IN VOICE CHANNEL :/');
-            return message.channel.send(embed);
+            return message.util.send(embed);
           }
-        const serverQueue = message.client.queue.get(message.guild.id);
-        const vote = message.client.vote.get(message.guild.id);
+        const serverQueue = this.client.queue.get(message.guild.id);
+        const vote = this.client.vote.get(message.guild.id);
         if (!serverQueue) {
             embed.setAuthor('There is nothing playing that i could skip');
-            return message.channel.send(embed);
+            return message.util.send(embed);
         }
         
         const vcvote = Math.floor(message.guild.me.voice.channel.members.size / 2);
@@ -38,31 +38,31 @@ class SkipCommand extends Command {
               serverQueue.connection.dispatcher.end();
               embed.setDescription('VOTE - SKIP | Skipping The Song');
               embed.setThumbnail(this.client.user.displayAvatarURL());
-              return message.channel.send(embed);
+              return message.util.send(embed);
             }
         
             if (vote.voters.includes(message.author.id)) {
-              return message.channel.send('You already voted for this song');
+              return message.util.send('You already voted for this song');
             }
         
             if (vcvote === 2) {
               serverQueue.connection.dispatcher.end();
               embed.setDescription('✔ | Skipping The Song');
               embed.setThumbnail(this.client.user.displayAvatarURL());
-              return message.channel.send(embed);
+              return message.util.send(embed);
             }
         
         
             vote.vote++;
             vote.voters.push(message.author.id);
             // eslint-disable-next-line max-len
-            return message.channel.send(`You Voted for the Song to Skip, btw we currently need ${Math.floor(vcvote - vote.vote)} votes`);
+            return message.util.send(`You Voted for the Song to Skip, btw we currently need ${Math.floor(vcvote - vote.vote)} votes`);
           }
         
           serverQueue.connection.dispatcher.end();
           embed.setDescription('✔ | Skipping The Song');
           embed.setThumbnail(this.client.user.displayAvatarURL());
-          message.channel.send(embed);
+          message.util.send(embed);
         };
 	}
 

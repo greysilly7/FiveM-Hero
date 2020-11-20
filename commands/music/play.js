@@ -3,6 +3,7 @@ const ytdl = require('ytdl-core');
 const YoutubeAPI = require('simple-youtube-api');
 const { secrets, settings } = require('../../config.json');
 const {MessageEmbed} = require('discord.js');
+const ytsr = require('ytsr');
 const {play} = require('../../libaries/music');
 const youtube = new YoutubeAPI(secrets.YT_API);
 const QUEUE_LIMIT = settings.QUEUE_LIMIT;
@@ -32,7 +33,7 @@ class PlayCommand extends Command {
 		if (!args.song.length) {
 			// IF AUTHOR DIDENT GIVE URL OR NAME
 			embed.setAuthor('WRONG SYNTAX : Type `play <URL> or text`');
-			return message.channel.send(embed);
+			return message.util.send(embed);
 		}
 
 		const { channel } = message.member.voice;
@@ -40,7 +41,7 @@ class PlayCommand extends Command {
 		if (!channel) {
 			// IF AUTHOR IS NOT IN VOICE CHANNEL
 			embed.setAuthor('YOU NEED TO BE IN VOICE CHANNEL :/');
-			return message.channel.send(embed);
+			return message.util.send(embed);
 		}
 
 		const videoPattern = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
@@ -49,10 +50,10 @@ class PlayCommand extends Command {
 	  
 		if (!videoPattern.test(args.song) && playlistPattern.test(args.song)) {
 		  embed.setAuthor('I am Unable To Play Playlist for now');
-		  return message.channel.send(embed);
+		  return message.util.send(embed);
 		}
 
-		const serverQueue = message.client.queue.get(message.guild.id);
+		const serverQueue = this.client.queue.get(message.guild.id);
 
 		const queueConstruct = {
 		  textChannel: message.channel,
@@ -94,8 +95,14 @@ class PlayCommand extends Command {
 		} else {
 		  try {
 			const result = await youtube.searchVideos(args.song, 1);
+			/*
+			const options = {
+			  limit: 1,
+			}
+			const result = await ytsr(args.song, options)
+			*/
 			songData = await ytdl.getInfo(result[0].url);
-	  
+
 			song = {
 			  title: songData.videoDetails.title,
 			  url: songData.videoDetails.video_url,
@@ -103,16 +110,17 @@ class PlayCommand extends Command {
 			  thumbnail: songData.videoDetails.thumbnail.thumbnails[3].url,
 			};
 		  } catch (error) {
-			console.log(error);
-			if (error.errors[0].domain === 'usageLimits') {
+			throw new Error(error)
+			/*
+			if (error.errors[1].domain === 'usageLimits') {
 			  return message.channel.send('Your YT API limit is over and it will be restored under 24 hours');
 			}
+			*/
 		  }
 		}
-	  
 		if (serverQueue) {
 		  if (serverQueue.songs.length > Math.floor(QUEUE_LIMIT - 1) && QUEUE_LIMIT !== 0) {
-			return message.channel.send(`You can not add songs more than ${QUEUE_LIMIT} in queue`);
+			return message.util.send(`You can not add songs more than ${QUEUE_LIMIT} in queue`);
 		  }
 	  
 	  
@@ -130,16 +138,16 @@ class PlayCommand extends Command {
 		}
 	  
 		if (!serverQueue) {
-		  message.client.queue.set(message.guild.id, queueConstruct);
+		  this.client.queue.set(message.guild.id, queueConstruct);
 		}
-		message.client.vote.set(message.guild.id, voteConstruct);
+		this.client.vote.set(message.guild.id, voteConstruct);
 		if (!serverQueue) {
 		  try {
 			queueConstruct.connection = await channel.join();
 			play(queueConstruct.songs[0], message);
 		  } catch (error) {
 			console.error(`Could not join voice channel: ${error}`);
-			message.client.queue.delete(message.guild.id);
+			this.client.queue.delete(message.guild.id);
 			await channel.leave();
 			return message.channel
 				.send({

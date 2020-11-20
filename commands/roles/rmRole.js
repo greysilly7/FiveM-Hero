@@ -8,7 +8,7 @@ class RemoveRoleCommand extends Command {
         super('rmRole', {
             // aliases must also include the command name aliases is just the possible ways to execute teh command
             aliases: ['removerole', 'roleremove'],
-		    category: 'utility',
+		    category: 'roles',
 			args: [
 				{
 					id: 'member',
@@ -30,9 +30,12 @@ class RemoveRoleCommand extends Command {
 
     // Here we put what code we want it to actually execute
 	async exec(message, args) {
+		
 		message.delete();
-		const allowedRoles = ['754485247160221867']
-			if (!allowedRoles.some(id => message.member.roles.cache.has(id))) return message.channel.send(`Sorry ${message.author}, you don\'t have the permissions to use that command.`);
+		
+			if (!message.member.roles.cache.has('754485247160221867')){ 
+				return message.util.send(`Sorry ${message.author}, you don\'t have the permissions to use that command.`);
+			}
 				if (!args.member) {
 					return message.reply('You need to specify a user to remove a role from.');
 				}
@@ -51,7 +54,7 @@ class RemoveRoleCommand extends Command {
                 hasroleEmbed.setColor('RED');
 
                 if (!args.member.roles.cache.has(args.roleid)) {
-                    return message.channel.send(hasroleEmbed)
+                    return message.util.send(hasroleEmbed)
 				}
 				
 				const removeroleEmbed = new MessageEmbed();
@@ -64,7 +67,7 @@ class RemoveRoleCommand extends Command {
 				
 				if (args.member.roles.cache.has(args.roleid)) {
 					args.member.roles.remove(args.roleid);
-					message.channel.send(removeroleEmbed);
+					message.util.send(removeroleEmbed);
 				}
         }
     }

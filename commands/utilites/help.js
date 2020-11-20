@@ -2,8 +2,6 @@ const { Command } = require('discord-akairo');
 	
 const fs = require('fs');
 	
- 
-	
 class HelpCommand extends Command {
 	
 	constructor() {
@@ -186,13 +184,11 @@ class HelpCommand extends Command {
 	
 				title = {
 	
-					general: '📝\u2000General',
+					fivem: '�\u2000FFiveM Commands',
 	
-					fun: '🎉\u2000Fun',
+					giveaway: '🎁\u2000Giveaways',
 	
-					minigame: '🕹\u2000Minigames (WIP)',
-	
-					images: '🖼\u2000Images',
+					roles: '🧾\u2000Roles',
 	
 					utility: '🔩\u2000Utility',
 	
@@ -206,13 +202,11 @@ class HelpCommand extends Command {
 	
 				title = {
 	
-					general: '📝\u2000General',
+					fivem: '�\u2000FFiveM Commands',
 	
-					fun: '🎉\u2000Fun',
+					giveaway: '🎁\u2000Giveaways',
 	
-					minigame: '🕹\u2000Minigames (WIP)',
-	
-					images: '🖼\u2000Images',
+					roles: '🧾\u2000Roles',
 	
 					utility: '🔩\u2000Utility',
 	
@@ -238,7 +232,7 @@ class HelpCommand extends Command {
 	
 			await message.author.send({ embed });
 	
-			if (shouldReply) return message.reply('I\'ve sent you a DM with the command list.');
+			if (shouldReply) return message.reply('I\'ve sent you a DM with the command list.').then(m => m.delete({timeout: 5000}));
 			message.delete()
 		} catch (err) {
 			message.delete()

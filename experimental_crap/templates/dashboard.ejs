@@ -1,0 +1,10 @@
+<%- include("partials/header", { bot, path, title: "Dashboard" }) %>
+<meta charset="UTF-8">
+
+<% bot.guilds.cache.forEach(guild => {
+    const permsOnGuild = new perms(guild.permissions);
+    if(!permsOnGuild.has("MANAGE_GUILD")) return;
+  %>
+  <% }); %>
+  
+<%- include("partials/footer") %>

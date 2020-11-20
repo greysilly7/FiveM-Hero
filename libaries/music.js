@@ -8,7 +8,7 @@ module.exports = {
 
     if (!song) {
       queue.channel.leave();
-      message.client.queue.delete(message.guild.id);
+      this.client.queue.delete(message.guild.id);
       embed.setAuthor('MUSIC QUEUE IS ENDED NOW :/');
       return queue.textChannel
           .send(embed)

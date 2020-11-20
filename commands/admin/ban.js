@@ -34,33 +34,16 @@ class BanCommand extends Command {
             if (allowedRoles.some(id => message.member.roles.cache.has(id))) {
                 if (!args.member) {
                     return message.reply('Please mention a member of the server');
-                  }
-                  if (!args.member.bannable) {
+                }
+                if (!args.member.bannable) {
                     return message.reply('I cannot ban this user! Do they have a higher role? Do I have ban permissions?');
-                  }
-                                  
-                  const StaffLogEmbed = new MessageEmbed();
-                  StaffLogEmbed.setThumbnail(args.member.avatarURL);
-                  StaffLogEmbed.setTitle('Staff Action:', 'Ban');
-                  StaffLogEmbed.setAuthor('Banned by:', message.author);
-                  StaffLogEmbed.addField('Member Banned', `${args.member.username}`)
-                  StaffLogEmbed.addField('Ban Reason', `${args.reason}`);
-                  const ChannelEmbed = new MessageEmbed();
-                  ChannelEmbed.setThumbnail(args.member.avatarURL);
-                  ChannelEmbed.setTitle('User Banned');
-                  ChannelEmbed.setAuthor(`${args.member.username}`);
-                  ChannelEmbed.addField('Ban Reason:', `\`\`${args.reason}\`\``);
-                  ChannelEmbed.addField('Banned by:', message.author);
-
-                  await args.member.ban({reason: args.reason})
-                      .catch((error) => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
-                    
-                    message.guild.channels.cache.get(settings.staffLogs).send(StaffLogEmbed);
-                    message.channel.send(ChannelEmbed);
-            } else {
-                return message.channel.send(`Sorry ${message.author}, you do not have the permission to run this command!`);
-            }
+                }
+                await args.member.ban({reason: args.reason})
+                    .catch((error) => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
+                message.util.send(`<@!${args.member}> has been banned. | Reason: ${args.reason}`);
+        } else {
+            return message.util.send(`Sorry ${message.author}, you do not have the permission to run this command!`);
         }
     }
-
+}
 module.exports = BanCommand;

@@ -63,10 +63,8 @@ class FIVEMHEROCLIENT extends AkairoClient {
         return super.login(token)
     }
 
-    queue = new Collection();
     vote = new Collection();
-    entries = new Collection();
-    wait = require('util').promisify(setTimeout);
+    queue = new Collection();
 }
 
 module.exports.FIVEMHEROCLIENT = FIVEMHEROCLIENT;

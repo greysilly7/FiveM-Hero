@@ -9,13 +9,23 @@
   "author": "greysilly7/m3",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "discord-akairo": "^8.1.0",
-    "discord.js": "^12.4.0",
+    "discord.js": "^12.4.1",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "memorystore": "^1.6.4",
     "mkdirp": "^1.0.4",
-    "node-rest-client": "^3.1.0",
+    "node-fetch": "^2.6.1",
     "opusscript": "0.0.7",
+    "passport": "^0.4.1",
+    "passport-discord": "^0.1.4",
+    "request": "^2.88.2",
     "simple-youtube-api": "^5.2.1",
-    "ytdl-core": "^3.4.1",
-    "ytdl-core-discord": "^1.2.3"
+    "url": "^0.11.0",
+    "ytdl-core": "^3.4.2",
+    "ytdl-core-discord": "^1.2.4",
+    "ytsr": "^1.0.4"
   }
 }

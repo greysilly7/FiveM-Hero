@@ -47,9 +47,9 @@ class KickCommand extends Command {
                 // Now, time for a swift kick in the nuts!
                 await member.kick(reason)
                     .catch((error) => message.reply(`Sorry ${message.author} I couldn't kick because of: ${error}`));
-                message.reply(`${member.user.tag} has been kicked by ${message.author} | Reason:  ${reason}`);
+                message.util.send(`${member.user.tag} has been kicked by ${message.author} | Reason:  ${reason}`);
             } else {
-                return message.channel.send(`Sorry ${message.author}, you do not have the permission to run this command!`);
+                return message.util.send(`Sorry ${message.author}, you do not have the permission to run this command!`);
             }
     } 
 }

@@ -5,7 +5,7 @@ class GiveawayCommand extends Command {
 	constructor() {
 		super('giveaway', {
 			aliases: ['ga'],
-			category: 'utility',
+			category: 'giveaway',
 			args: [
 				{
 					id: 'time',
@@ -34,7 +34,8 @@ class GiveawayCommand extends Command {
             giveawayEmbed.setTitle(`New Giveaway by: ${message.author.tag}`);
             giveawayEmbed.setThumbnail('https://memberpress.com/wp-content/uploads/2020/04/male-hand-holding-megaphone-with-giveaway-speech-bubble-loudspeaker-vector-id1197835447-1024x576.jpg');
             giveawayEmbed.setColor('GREEN');
-            giveawayEmbed.addField('Giveaway Description', args.content);
+			giveawayEmbed.addField('Giveaway Description', args.content);
+			giveawayEmbed.addField('Time Left:', args.time)
             giveawayEmbed.setFooter('To enter the giveaway, press the 🎁 below.')
             message.guild.channels.cache.get('770358236485255168').send(giveawayEmbed).then(message.guild.channels.cache.get('770358236485255168').send('<@&770407237441159208> A New giveaway has been made.')).then(async (message) => {
 				await message.react('🎁');

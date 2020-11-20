@@ -21,7 +21,7 @@ class ReadyListener extends Listener {
 		let profilePicture = this.client.user.displayAvatarURL();
 		let clientID = this.client.user.id;
         // let author = this.client.users.resolve(settings.ownerID).tag.toLowerCase();
-        let author = this.client.users.resolve('688238554769653771').tag;
+        // let author = this.client.users.resolve('688238554769653771').tag;
 
 
 		//  Send stats to the console
@@ -70,45 +70,6 @@ class ReadyListener extends Listener {
 		}
         
 		// Expose stats
-		if (settings.exposeStats) {
-			const port = 3000;
-
-			const http = require('http');
-	
-			const requestHandler = (req, res) => {
-				// Refresh some info
-				commandSize = this.client.commandHandler.modules.size;
-				guildSize = this.client.guilds.cache.size;
-				userSize = this.client.users.cache.size;
-				profilePicture = this.client.user.displayAvatarURL();
-				
-				let response = {
-					'commandSize': commandSize,
-					'ClientTag': clientTag,
-					'guildSize': guildSize,
-					'userSize': userSize,
-					'prefixSize': settings.prefix.length,
-					'profilePicture': profilePicture,
-					'clientID': clientID,
-					'djsVersion': djsVersion,
-					'akairoVersion': akairoVersion,
-					'homepage': pjson.homepage,
-					'author': author
-				};
-				res.statusCode = 200;
-				res.setHeader('Content-Type', 'application/json');
-				res.end(JSON.stringify(response));
-			};
-			
-			const server = http.createServer(requestHandler);
-			
-			server.listen(port, (err) => {
-				if (err) {
-					return console.log('something bad happened', err);
-				}
-			});
-			console.log(`Exposing stats on port ${port}`);
-        }
 
 		console.log('===========[ READY ]===========');
 
@@ -136,7 +97,6 @@ class ReadyListener extends Listener {
 			const seconds = `${date.getSeconds()}`.padStart(2, '0');
 			errorFunc.apply(console, [`[${hours}:${minutes}:${seconds}] [ERROR] `].concat([].slice.call(arguments)));
 		};
-
 	}
 }
 
