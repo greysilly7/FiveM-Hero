@@ -40,7 +40,7 @@ class BanCommand extends Command {
                 }
                 await args.member.ban({reason: args.reason})
                     .catch((error) => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
-                message.util.send(`<@!${args.member}> has been banned. | Reason: ${args.reason}`);
+                message.util.send(`${args.member} has been banned. | Reason: ${args.reason}`);
         } else {
             return message.util.send(`Sorry ${message.author}, you do not have the permission to run this command!`);
         }
