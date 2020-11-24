@@ -10,9 +10,9 @@ class PlayTimeCommand extends Command {
 			aliases: ['pt'],
             category: 'fivem',
             args: [
-				{
-					id: 'member',
-					type: 'member',
+                {
+                    id: 'member',
+                    type: 'member',
                 }
             ],
 			clientPermissions: ['SEND_MESSAGES'],
@@ -60,6 +60,4 @@ const getUser = async (userID) => {
     const userInfo = await fetch(`https://dev.fivempanel.com/api/v2/external/user?key=W3W9VQJQ2GDG3MKB6BXF&com=0F027EF40A7C1A671DAE8CD711AC835A&id=discord:${userID}`);
     let json = await userInfo.json();
     return json.data.user;
-    // if(typeof(userInfo) === null) return 0
-    // return userInfo;
 }
