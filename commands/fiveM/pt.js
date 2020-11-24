@@ -34,23 +34,23 @@ class PlayTimeCommand extends Command {
             }
 		    const user = await getUser(args.member.id)
 		    // console.log(await getUser(message.author.id));
-            const tsembed = new MessageEmbed();
-		    tsembed.setTitle(`${args.member.nickname}'s Information`);
-		    tsembed.setFooter(`${this.client.user.tag}`);
-		    tsembed.setTimestamp();
-		    tsembed.addField('Minutes:', `\`\`${user.playtime}\`\``);
-            tsembed.addField('Hours:', `\`\`${user.steam}%\`\``);
-            tsembed.addField('Last Played:', `\`\`${user.discord}\`\``);
-		    tsembed.setThumbnail(message.author.displayAvatarURL());
+            const tsembed = this.client.util.embed()
+		        .setTitle(`${args.member.nickname}'s Information`)
+		        .setFooter(`${this.client.user.tag}`)
+		        .setTimestamp()
+		        .addField('Minutes:', `\`\`${user.playtime}\`\``)
+                .addField('Hours:', `\`\`${user.steam}%\`\``)
+                .addField('Last Played:', `\`\`${user.discord}\`\``)
+		        .setThumbnail(message.author.displayAvatarURL());
             return message.util.send(tsembed);
         
         } else {
             const user2 = await getUser(args.member.id)
-            const ptembed = new MessageEmbed();
-            ptembed.setTitle(`${message.author.tag}'s Playetime`);
-            ptembed.setFooter(this.client.user.tag);
-            ptembed.setTimestamp();
-            ptembed.addField('Minutes:', `\`\`${user2.playtime}\`\``)
+            const ptembed = this.client.util.embed()
+                .setTitle(`${message.author.tag}'s Playetime`)
+                .setFooter(this.client.user.tag)
+                .setTimestamp()
+                .addField('Minutes:', `\`\`${user2.playtime}\`\``);
         } 
 	}
 }

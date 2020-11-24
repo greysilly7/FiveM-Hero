@@ -35,14 +35,14 @@ class SteamCommand extends Command {
         }
 		const user = await getUser(args.member.id)
 		// console.log(await getUser(message.author.id));
-        const tsembed = new MessageEmbed
-		tsembed.setTitle(`${args.member.nickname}'s Information`);
-		tsembed.setFooter(`${this.client.user.tag}`);
-		tsembed.setTimestamp();
-		tsembed.addField('Steam Name:', `\`\`${user.name}\`\``);
-        tsembed.addField('Steam ID:', `\`\`${user.steam}%\`\``);
-        tsembed.addField('Discord ID:', `\`\`${user.discord}\`\``);
-		tsembed.setThumbnail(message.author.displayAvatarURL());
+        const tsembed = this.client.util.embed()
+			.setTitle(`${args.member.nickname}'s Information`)
+			.setFooter(`${this.client.user.tag}`)
+			.setTimestamp()
+			.addField('Steam Name:', `\`\`${user.name}\`\``)
+        	.addField('Steam ID:', `\`\`${user.steam}%\`\``)
+        	.addField('Discord ID:', `\`\`${user.discord}\`\``)
+			.setThumbnail(message.author.displayAvatarURL());
 		return message.util.send(tsembed).then(m => m.delete({timeout: 15000}));
 	}
 }
