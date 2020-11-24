@@ -1,6 +1,5 @@
 const { Command } = require('discord-akairo');
 
-
 class VerifyEmbedCommand extends Command {
     constructor() {
         super('verify', {

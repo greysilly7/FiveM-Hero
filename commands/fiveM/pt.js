@@ -1,5 +1,4 @@
 const { Command } = require('discord-akairo');
-const { MessageEmbed } = require('discord.js')
 const fetch = require('node-fetch');
 const { promisify } = require('util')
 promisify(fetch)

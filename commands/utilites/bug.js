@@ -1,5 +1,4 @@
 const { Command } = require('discord-akairo');
-const { MessageEmbed } = require('discord.js');
 
 class BugCommand extends Command {
     constructor() {
@@ -29,12 +28,12 @@ class BugCommand extends Command {
             return message.reply('Please state what you want to suggest.').then(m => m.delete({timeout: 5000}));
         }
 
-        const suggestEmbed = new MessageEmbed();
-        suggestEmbed.setTitle(`${message.author.tag}'s Bug Report`);
-        suggestEmbed.addField('Bug:', args.suggest);
-        suggestEmbed.setFooter('✅ - Have seen this bug | ❌ - Have not seen this bug | 🙂 - Fixed');
-        suggestEmbed.setTimestamp();
-        suggestEmbed.setThumbnail(message.author.displayAvatarURL());
+        const suggestEmbed = this.client.util.embed()
+            .setTitle(`${message.author.tag}'s Bug Report`)
+            .addField('Bug:', args.suggest)
+            .setFooter('✅ - Have seen this bug | ❌ - Have not seen this bug | 🙂 - Fixed')
+            .setTimestamp()
+            .setThumbnail(message.author.displayAvatarURL());
         message.guild.channels.cache.get('754507686321586277').send(suggestEmbed).then(async (message) => {
             await message.react('✅');
             await message.react('❌');

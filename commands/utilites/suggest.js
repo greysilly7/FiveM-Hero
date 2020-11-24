@@ -1,5 +1,4 @@
 const { Command } = require('discord-akairo');
-const { MessageEmbed } = require('discord.js');
 
 class SuggestCommand extends Command {
     constructor() {
@@ -29,12 +28,12 @@ class SuggestCommand extends Command {
             return message.reply('Please state what you want to suggest.').then(m => m.delete({timeout: 5000}));
         }
 
-        const suggestEmbed = new MessageEmbed();
-        suggestEmbed.setTitle(`${message.author.tag}'s Suggestion`);
-        suggestEmbed.addField('Suggestion:', args.suggest);
-        suggestEmbed.setFooter('✅ - Yes | ❌ No');
-        suggestEmbed.setTimestamp();
-        suggestEmbed.setThumbnail(message.author.displayAvatarURL());
+        const suggestEmbed = this.client.util.embed()
+            .setTitle(`${message.author.tag}'s Suggestion`)
+            .addField('Suggestion:', args.suggest)
+            .setFooter('✅ - Yes | ❌ No')
+            .setTimestamp()
+            .setThumbnail(message.author.displayAvatarURL());
         message.guild.channels.cache.get('754507734933569556').send(suggestEmbed).then(async (message) => {
             await message.react('✅');
             await message.react('❌');

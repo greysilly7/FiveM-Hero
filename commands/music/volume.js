@@ -1,5 +1,4 @@
 const { Command } = require('discord-akairo');
-const { MessageEmbed } = require('discord.js');
 
 class VolumeCommand extends Command {
 	constructor() {
@@ -29,7 +28,7 @@ class VolumeCommand extends Command {
             return message.channel.send('You are not allowed to change the volume of the music');
         }
         */
-        const embed = new MessageEmbed();
+        const embed = this.client.util.embed();
         const {channel} = message.member.voice;
         if (!channel) {
           // IF AUTHOR IS NOT IN VOICE CHANNEL

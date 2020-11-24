@@ -2,7 +2,6 @@ const { Command } = require('discord-akairo');
 const ytdl = require('ytdl-core');
 const YoutubeAPI = require('simple-youtube-api');
 const { secrets, settings } = require('../../config.json');
-const {MessageEmbed} = require('discord.js');
 const ytsr = require('ytsr');
 const {play} = require('../../libaries/music');
 const youtube = new YoutubeAPI(secrets.YT_API);
@@ -29,7 +28,7 @@ class PlayCommand extends Command {
 	}
 
 	async exec(message, args) {
-		const embed = new MessageEmbed();
+		const embed = this.client.util.embed();
 		if (!args.song.length) {
 			// IF AUTHOR DIDENT GIVE URL OR NAME
 			embed.setAuthor('WRONG SYNTAX : Type `play <URL> or text`');

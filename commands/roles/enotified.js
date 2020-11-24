@@ -1,5 +1,4 @@
 const { Command } = require('discord-akairo');
-const { MessageEmbed } = require('discord.js');
 
 class ENotifiedCommand extends Command {
     constructor() {
@@ -13,12 +12,12 @@ class ENotifiedCommand extends Command {
     async exec(message, args) {
         message.delete()
         if (message.member.roles.cache.has('754474630953304116')) {
-            const suggestEmbed = new MessageEmbed();
-            suggestEmbed.setTitle(`Event Notifications`);
-            suggestEmbed.setDescription('Do you want to be notified when we plan server events?');
-            suggestEmbed.addField('If so, click the 🔔.', '‎‎‎‎‎‎‏‏‎ ');
-            suggestEmbed.setImage('https://media.discordapp.net/attachments/754507634996019233/759716404638908426/scteamspeak.png');
-            suggestEmbed.setColor('GREEN')
+            const suggestEmbed = this.client.util.embed()
+                .setTitle(`Event Notifications`)
+                .setDescription('Do you want to be notified when we plan server events?')
+                .addField('If so, click the 🔔.', '‎‎‎‎‎‎‏‏‎ ')
+                .setImage('https://media.discordapp.net/attachments/754507634996019233/759716404638908426/scteamspeak.png')
+                .setColor('GREEN');
             message.guild.channels.cache.get('754502549624848565').send(suggestEmbed).then(async (message) => {
                 await message.react('🔔');
             });

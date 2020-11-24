@@ -1,6 +1,5 @@
 // This is what we are doing it provides us with auto-completeion and a base (this is needed)
 const { Command } = require('discord-akairo');
-const { MessageEmbed } = require('discord.js');
 
 class RemoveRoleCommand extends Command {
     constructor() {
@@ -48,22 +47,22 @@ class RemoveRoleCommand extends Command {
 					return message.reply(`I can\'t remove that role because that role id, ${args.roleid}, does not exist.`)
 				}
 
-				const hasroleEmbed = new MessageEmbed();
-                hasroleEmbed.setThumbnail('https://media.discordapp.net/attachments/754507634996019233/759716404638908426/scteamspeak.png');
-                hasroleEmbed.addField('I can\'t remove this role.', `I can\'t remove <@&${args.roleid}> from ${args.member} becuase they don\'t have that role.`);
-                hasroleEmbed.setColor('RED');
+				const hasroleEmbed = this.client.util.embed()
+                	.setThumbnail('https://media.discordapp.net/attachments/754507634996019233/759716404638908426/scteamspeak.png')
+                	.addField('I can\'t remove this role.', `I can\'t remove <@&${args.roleid}> from ${args.member} becuase they don\'t have that role.`)
+                	.setColor('RED');
 
                 if (!args.member.roles.cache.has(args.roleid)) {
                     return message.util.send(hasroleEmbed)
 				}
 				
-				const removeroleEmbed = new MessageEmbed();
-				removeroleEmbed.setTitle('Removing Role');
-				removeroleEmbed.setThumbnail('https://media.discordapp.net/attachments/754507634996019233/759716404638908426/scteamspeak.png')
-				removeroleEmbed.addField('Removed From:', `${args.member}`, true);
-				removeroleEmbed.addField('Removed By:', message.author, true);
-				removeroleEmbed.addField('Role Removed: ', `<@&${args.roleid}>`, true );
-				removeroleEmbed.setColor('RED');
+				const removeroleEmbed = this.client.util.embed()
+					.setTitle('Removing Role')
+					.setThumbnail('https://media.discordapp.net/attachments/754507634996019233/75971640468908426/scteamspeak.png')
+					.addField('Removed From:', `${args.member}`, true)
+					.addField('Removed By:', message.author, true)
+					.addField('Role Removed: ', `<@&${args.roleid}>`, true )
+					.setColor('RED');
 				
 				if (args.member.roles.cache.has(args.roleid)) {
 					args.member.roles.remove(args.roleid);

@@ -1,5 +1,4 @@
 const { Command } = require('discord-akairo');
-const { MessageEmbed } = require('discord.js');
 
 class SayCommand extends Command {
 	constructor() {
@@ -23,12 +22,12 @@ class SayCommand extends Command {
 
 	async exec(message, args) {
 		message.delete()
-        const sayembed = new MessageEmbed();
-        sayembed.setTitle(`${message.author.tag} Say's`);
-        sayembed.setDescription(args.message);
-        sayembed.setThumbnail('https://media.discordapp.net/attachments/759629923811065886/765087779016278016/scdiscord.png');
-        sayembed.setTimestamp();
-        sayembed.setFooter(`${this.client.user.tag}`)
+        const sayembed = this.client.util.embed()
+        	.setTitle(`${message.author.tag} Say's`);
+        	sayembed.setDescription(args.message);
+        	sayembed.setThumbnail('https://media.discordapp.net/attachments/759629923811065886/765087779016278016/scdiscord.png');
+        	sayembed.setTimestamp();
+        	sayembed.setFooter(`${this.client.user.tag}`)
 
         if (!args.message) {
             return message.util.send(`${message.auhtor}, Please specify something to say through me.`).then(m => m.delete({timeout: 5000}));

@@ -1,5 +1,4 @@
 const { Command } = require('discord-akairo');
-const { MessageEmbed } = require('discord.js')
 
 class GiveawayCommand extends Command {
 	constructor() {
@@ -30,13 +29,13 @@ class GiveawayCommand extends Command {
 	async exec(message, args) {
 		message.delete()
 		if (!message.member.guild.roles.cache.has('770406007482220634')) return message.channel.send(`Sorry ${message.author}, you do not have the permission to run this command!`);
-            const giveawayEmbed = new MessageEmbed
-            giveawayEmbed.setTitle(`New Giveaway by: ${message.author.tag}`);
-            giveawayEmbed.setThumbnail('https://memberpress.com/wp-content/uploads/2020/04/male-hand-holding-megaphone-with-giveaway-speech-bubble-loudspeaker-vector-id1197835447-1024x576.jpg');
-            giveawayEmbed.setColor('GREEN');
-			giveawayEmbed.addField('Giveaway Description', args.content);
-			giveawayEmbed.addField('Time Left:', args.time)
-            giveawayEmbed.setFooter('To enter the giveaway, press the 🎁 below.')
+            const giveawayEmbed = this.client.util.embed()
+            	.setTitle(`New Giveaway by: ${message.author.tag}`)
+            	.setThumbnail('https://memberpress.com/wp-content/uploads/2020/04/male-hand-holding-megaphone-with-giveaway-speech-bubble-loudspeaker-vector-id1197835447-1024x576.jpg')
+            	.setColor('GREEN')
+				.addField('Giveaway Description', args.content)
+				.addField('Time Left:', args.time)
+            	.setFooter('To enter the giveaway, press the 🎁 below.');
             message.guild.channels.cache.get('770358236485255168').send(giveawayEmbed).then(message.guild.channels.cache.get('770358236485255168').send('<@&770407237441159208> A New giveaway has been made.')).then(async (message) => {
 				await message.react('🎁');
 				const filter = (reaction, user) => reaction.emoji.name === '🎁'
@@ -48,10 +47,10 @@ class GiveawayCommand extends Command {
 					let rand = Math.floor(Math.random() * this.client.entries.length);
 					let winner = this.client.entries[rand]
 					winner = message.guild.members.cache.find((name) => name.id === winner.id)
-					const winnerEmbed = new MessageEmbed();
-					winnerEmbed.setThumbnail(winner.avatarURL);
-					winnerEmbed.addField('Winner: ', winner);
-					winnerEmbed.addField(winner, ',won: ', args.content);
+					const winnerEmbed = this.client.util.embed()
+						.setThumbnail(winner.avatarURL)
+						.addField('Winner: ', winner)
+						.addField(winner, ',won: ', args.content);
 					message.guild.channels.cache.get('770358236485255168').send(winnerEmbed);
 					
 				});

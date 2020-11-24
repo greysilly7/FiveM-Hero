@@ -1,5 +1,4 @@
 const { Command } = require('discord-akairo');
-const { MessageEmbed } = require('discord.js');
 
 class SkipCommand extends Command {
 	constructor() {
@@ -16,7 +15,7 @@ class SkipCommand extends Command {
 	}
 
 	async exec(message, args) {
-        const embed = new MessageEmbed();
+        const embed = this.client.util.embed();
         const {channel} = message.member.voice;
         if (!channel) {
             // IF AUTHOR IS NOT IN VOICE CHANNEL

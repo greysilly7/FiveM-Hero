@@ -1,7 +1,6 @@
 // This is what we are doing it provides us with auto-completeion and a base (this is needed)
 const { Command } = require('discord-akairo');
 const { settings } = require('../../config.json');
-const { MessageEmbed } = require('discord.js');
 
 class InviteCommand extends Command {
     constructor() {
@@ -20,8 +19,8 @@ class InviteCommand extends Command {
 
     // Here we put what code we want it to actually execute
     exec(message) {
-        const embed = new MessageEmbed();
-        embed.setAuthor(`${this.client.user.tag}`).setTitle(`Here is a invite to the discord server: ${settings.invite}.`).setThumbnail('https://cdn.discordapp.com/attachments/760853655192207381/768240668471590922/scdiscord.png');
+        const embed = this.client.util.embed()
+            .setAuthor(`${this.client.user.tag}`).setTitle(`Here is a invite to the discord server: ${settings.invite}.`).setThumbnail('https://cdn.discordapp.com/attachments/760853655192207381/768240668471590922/scdiscord.png');
         message.delete();
         return message.util.send(embed);
     }
