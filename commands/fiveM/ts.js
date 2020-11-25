@@ -20,9 +20,6 @@ class TrustscoreCommand extends Command {
 
 	async exec(message) {
 		message.delete()
-		if (!message.channel.id === '754508050471059567') {
-			message.util.send('No').then(m => m.delete({timeout: 10000}))
-		};
 		const user = await getUser(message.author.id)
 		// console.log(await getUser(message.author.id));
 		const tsembed = this.client.util.embed()
@@ -47,7 +44,7 @@ class TrustscoreCommand extends Command {
 module.exports = TrustscoreCommand;
 
 const getUser = async (userID) => {
-	const userInfo = await fetch(`https://dev.fivempanel.com/api/v2/external/user?key=W3W9VQJQ2GDG3MKB6BXF&com=0F027EF40A7C1A671DAE8CD711AC835A&id=discord:${userID}`);
+	const userInfo = await fetch(`https://dev.fivempanel.com/api/v2/external/user?key=W3W9VQJQ2GDG3MKB6BXF&com=46C4A71648F21EC3D4DA5CE46C8EAB94&id=discord:${userID}`);
 	let json = await userInfo.json();
 	return json.data.user;
 }

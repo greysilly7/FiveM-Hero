@@ -19,7 +19,7 @@ class VerifyEmbedCommand extends Command {
                 .addField('After signing up for the CAD:', 'You can now verify, to verify please type \`!verify\` below.')
                 .setImage('https://media.discordapp.net/attachments/754507634996019233/759716404638908426/scteamspeak.png')
                 .setColor('GREEN');
-            message.guild.channels.cache.get('778014642307727360').send(suggestEmbed)
+            message.guild.channels.cache.get('777325220792762430').send(suggestEmbed)
         } else {
             return message.util.send(`Sorry ${message.author}, you do not have the permission to run this command!`);
         }

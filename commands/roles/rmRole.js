@@ -19,6 +19,7 @@ class RemoveRoleCommand extends Command {
                 }
 			],
 			clientPermissions: ['SEND_MESSAGES', 'MANAGE_ROLES'],
+			userPermissions: ['MANAGE_ROLES'],
 			description: {
 				content: 'Romves a role from a user',
 				usage: '!removerole',
@@ -31,43 +32,39 @@ class RemoveRoleCommand extends Command {
 	async exec(message, args) {
 		
 		message.delete();
-		
-			if (!message.member.roles.cache.has('754485247160221867')){ 
-				return message.util.send(`Sorry ${message.author}, you don\'t have the permissions to use that command.`);
+	
+			if (!args.member) {
+				return message.reply('You need to specify a user to remove a role from.');
 			}
-				if (!args.member) {
-					return message.reply('You need to specify a user to remove a role from.');
-				}
-				
-				if (!args.roleid) {
-					return message.reply('You need to specify a role to remove.')
-				}
+			
+			if (!args.roleid) {
+				return message.reply('You need to specify a role to remove.')
+			}
+			if (!message.guild.roles.cache.get(`${args.roleid}`)) {
+				return message.reply(`I can\'t remove that role because that role id, ${args.roleid}, does not exist.`)
+			}
 
-				if (!message.guild.roles.cache.get(`${args.roleid}`)) {
-					return message.reply(`I can\'t remove that role because that role id, ${args.roleid}, does not exist.`)
-				}
+			const hasroleEmbed = this.client.util.embed()
+            	.setThumbnail('https://media.discordapp.net/attachments/754507634996019233/759716404638908426/scteamspeak.png')
+            	.addField('I can\'t remove this role.', `I can\'t remove <@&${args.roleid}> from ${args.member} becuase they don\'t have that role.`)
+            	.setColor('RED');
 
-				const hasroleEmbed = this.client.util.embed()
-                	.setThumbnail('https://media.discordapp.net/attachments/754507634996019233/759716404638908426/scteamspeak.png')
-                	.addField('I can\'t remove this role.', `I can\'t remove <@&${args.roleid}> from ${args.member} becuase they don\'t have that role.`)
-                	.setColor('RED');
-
-                if (!args.member.roles.cache.has(args.roleid)) {
-                    return message.util.send(hasroleEmbed)
-				}
+            if (!args.member.roles.cache.has(args.roleid)) {
+                return message.util.send(hasroleEmbed)
+			}
 				
-				const removeroleEmbed = this.client.util.embed()
-					.setTitle('Removing Role')
-					.setThumbnail('https://media.discordapp.net/attachments/754507634996019233/75971640468908426/scteamspeak.png')
-					.addField('Removed From:', `${args.member}`, true)
-					.addField('Removed By:', message.author, true)
-					.addField('Role Removed: ', `<@&${args.roleid}>`, true )
-					.setColor('RED');
+			const removeroleEmbed = this.client.util.embed()
+				.setTitle('Removing Role')
+				.setThumbnail('https://media.discordapp.net/attachments/754507634996019233/75971640468908426/scteamspeak.png')
+				.addField('Removed From:', `${args.member}`, true)
+				.addField('Removed By:', message.author, true)
+				.addField('Role Removed: ', `<@&${args.roleid}>`, true )
+				.setColor('RED');
 				
-				if (args.member.roles.cache.has(args.roleid)) {
-					args.member.roles.remove(args.roleid);
-					message.util.send(removeroleEmbed);
-				}
+			if (args.member.roles.cache.has(args.roleid)) {
+				args.member.roles.remove(args.roleid);
+				message.util.send(removeroleEmbed);
+			}
         }
     }
 

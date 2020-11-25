@@ -11,7 +11,7 @@ class RandomRolesCommand extends Command {
 
     async exec(message, args) {
         message.delete()
-        if (message.member.roles.cache.has('754474630953304116')) {
+        if (message.member.roles.cache.has('777325219101671430')) {
             const suggestEmbed = this.client.util.embed()
                 .setTitle(`Random Roles`)
                 .setDescription('Do you like roles? Well then take these!')

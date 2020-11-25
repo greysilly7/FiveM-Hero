@@ -19,6 +19,7 @@ class AddRoleCommand extends Command {
                 }
 			],
 			clientPermissions: ['SEND_MESSAGES', 'MANAGE_ROLES'],
+			userPermissions: ['MANAGE_ROLES'],
 			description: {
 				content: 'Adds a role to a user',
 				usage: '!addrole',
@@ -30,10 +31,6 @@ class AddRoleCommand extends Command {
     // Here we put what code we want it to actually execute
 	async exec(message, args) {
 		message.delete();
-		if (!message.member.roles.cache.has('754485247160221867')){ 
-			message.util.send(`Sorry ${message.author}, you don\'t have the permissions to use that command.`).then(m => m.delete({timeout: 5000}));
-		};
-
 		if (message.member.roles.cache.has('754485247160221867')){
 
 			if (!args.member) {
