@@ -12,7 +12,7 @@ class VerifyEmbedCommand extends Command {
     async exec(message, args) {
         message.delete();
         message.member.roles.add('777325219101671430');
-        message.util.send(`\`\`Welcome to the West Life Roleplay ${message.author}. We are happy to have you here. -West Life Roleplay\`\``);
+        message.util.send(`\`\`\`Welcome to the West Life Roleplay ${message.author}. We are happy to have you here.\`\`\``);
     }
 }
 
