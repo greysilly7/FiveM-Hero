@@ -12,7 +12,7 @@ class VerifyEmbedCommand extends Command {
     async exec(message, args) {
         message.delete();
         message.member.roles.add('777325219101671430')
-        message.guild.channels.cache.get('754507424374980651').send(`Welcome to the SouthCity Roleplay ${message.author}. We are happy to have you here. -West Life Roleplay`);;
+        message.utils.send(`Welcome to the SouthCity Roleplay ${message.author}. We are happy to have you here. -West Life Roleplay`);;
     }
 }
 
