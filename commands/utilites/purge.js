@@ -12,6 +12,7 @@ class PurgeCommand extends Command {
 				}
 			],
 			clientPermissions: ['SEND_MESSAGES'],
+			userPermissions: ['MANAGE_MESSAGES'],
 			description: {
 				content: 'Purges/Clears up to 100 messages at a time.',
 				usage: '!purge',
@@ -21,7 +22,6 @@ class PurgeCommand extends Command {
 	}
 
 	async exec(message, args) {
-        if (message.member.guild.roles.cache.has('754478736606363699')){
         	let deleteCount = Math.floor(parseInt(args.clearamount));
         	if (!deleteCount || deleteCount < 2 || deleteCount > 100) {
             	return message.reply('Please provide a number between 2 and 100 for the number of messages to delete').then(m => m.delete({timeout: 5000}));
@@ -30,10 +30,6 @@ class PurgeCommand extends Command {
         	let fetched = await message.channel.messages.fetch({limit: deleteCount});
 			message.channel.bulkDelete(fetched)
 			return message.util.send(`Succesfully deleted ${deleteCount} messages.`).then(m => m.delete({timeout: 5000})).catch((error) => message.reply(`Couldn't delete messages because of: ${error}`));
-				
-		} else {
-			return message.reply('You don\'t have the permissions to use that command.');
-		}
 	}
 }
 

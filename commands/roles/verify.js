@@ -11,8 +11,8 @@ class VerifyEmbedCommand extends Command {
 
     async exec(message, args) {
         message.delete();
-        message.member.roles.add('777325219101671430')
-        message.utils.send(`Welcome to the SouthCity Roleplay ${message.author}. We are happy to have you here. -West Life Roleplay`);;
+        message.member.roles.add('777325219101671430');
+        message.util.send(`Welcome to the Westlife Roleplay ${message.author}. We are happy to have you here. -West Life Roleplay`);
     }
 }
 
