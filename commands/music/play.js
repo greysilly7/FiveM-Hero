@@ -10,7 +10,7 @@ const QUEUE_LIMIT = settings.QUEUE_LIMIT;
 class PlayCommand extends Command {
 	constructor() {
 		super('play', {
-			aliases: ['play'],
+			aliases: ['play', 'p'],
 			category: 'music',
 			args: [
 				{
