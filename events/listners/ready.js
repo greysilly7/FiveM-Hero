@@ -15,7 +15,7 @@ class ReadyListener extends Listener {
 		let guildSize = this.client.guilds.cache.size;
 		let userSize = this.client.users.cache.size;
 		let channelSize = this.client.channels.cache.size;
-		let profilePicture = this.client.user.displayAvatarURL();
+		// let profilePicture = this.client.user.displayAvatarURL();
 		let clientID = this.client.user.id;
         // let author = this.client.users.resolve(settings.ownerID).tag.toLowerCase();
         // let author = this.client.users.resolve('688238554769653771').tag;
@@ -36,7 +36,7 @@ class ReadyListener extends Listener {
 		}, 1800000);
 
 		async function setStatus(client) {
-			let owner = client.users.resolve(client.ownerID);
+			// let owner = client.users.resolve(client.ownerID);
 			let random = Math.floor((Math.random() * 3));
 			if (random === 0) { // Random "Watching" status taken from json
 				console.log('Status type: \x1b[32mWatching\x1b[0m');

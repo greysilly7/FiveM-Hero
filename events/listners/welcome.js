@@ -1,7 +1,4 @@
 const { Listener } = require('discord-akairo');
-const { User } = require('discord.js');
-const { GuildMember } = require('discord.js');
-const { MessageEmbed } = require('discord.js');
 
 class WelcomeListener extends Listener {
     constructor() {

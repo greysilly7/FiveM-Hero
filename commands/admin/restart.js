@@ -1,11 +1,9 @@
 const { Command } = require('discord-akairo');
-const { MessageEmbed } = require('discord.js')
-const { settings } = require('../../config.json')
 
 class RestartCommand extends Command {
     constructor() {
         super('restart', {
-            aliases: ['r'],
+            aliases: ['restart', 'r'],
             channel: 'guild',
             description: {
                 content: 'Shows the server restarting status',

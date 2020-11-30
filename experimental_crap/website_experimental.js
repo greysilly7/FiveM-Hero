@@ -30,8 +30,7 @@ module.exports = async (client) => {
 		clientSecret: panel.clientSecret,
 		callbackURL: `${panel.domain}:11500/callback`,
 		scope: ['identify', 'guilds']
-	},
-	(accessToken, refreshToken, profile, done) => {
+	}, (accessToken, refreshToken, profile, done) => {
 		// Once reached login pass in profile with no logic added
 		process.nextTick(() => done(null, profile))
 	}));
@@ -46,7 +45,7 @@ module.exports = async (client) => {
 
 	// Initilize passport middleware
 	app.use(passport.initialize());
-	app.use(passport.session());
+	app.use(passport.session(undefined));
 
 	// Bind to domain
 	app.locals.domain = panel.domain.split('//')[1];
@@ -113,7 +112,7 @@ module.exports = async (client) => {
 	});
 
 	// Logout Endpoint
-	app.get("/logout", function (req, res) {
+	app.get("/logout", (req, res) => {
 		// We destroy the session.
 		req.session.destroy(() => {
 		  	// We logout the user.

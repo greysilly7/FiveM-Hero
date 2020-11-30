@@ -1,7 +1,4 @@
 const { Listener } = require('discord-akairo');
-const mkdirp = require('mkdirp');
-const fs = require('fs');
-const { errorChannel } = require('../../config.json');
 
 class errorListener extends Listener {
 	constructor() {
@@ -23,25 +20,25 @@ class errorListener extends Listener {
 		if (message.author) errorEmbed.addField('Author', `${message.author.tag} (${message.author.id})`);
 		if (message.guild) errorEmbed.addField('Guild', `${message.guild.name} (${message.guild.id})`);
 
-		message.channel.send(errorEmbed);
+		await message.util.send(errorEmbed);
+		/*
 		//Get current date
 		let today = new Date();
 		let dd = today.getDate();
 		let mm = today.getMonth() + 1; //January is 0!
-		
+
 		let yyyy = today.getFullYear();
 		if (dd < 10) {
 			dd = '0' + dd;
-		} 
+		}
 		if (mm < 10) {
 			mm = '0' + mm;
-		} 
+		}
 		today = dd + '/' + mm + '/' + yyyy;
 		//Get current hour
 		let time = new Date();
 		let currentTime = time.getHours() + '_' + time.getMinutes() + '_' + time.getSeconds();
 		//Create folder with current date
-		/*
 		mkdirp(`./error/${today}`, (err) => {
 			if (err) {
 				console.error(err);

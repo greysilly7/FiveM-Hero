@@ -1,6 +1,4 @@
 const { Command } = require('discord-akairo');
-const { MessageEmbed } = require('discord.js')
-const { settings } = require('../../config.json')
 
 class StopCommand extends Command {
     constructor() {

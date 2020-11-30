@@ -1,5 +1,4 @@
 const { Command } = require('discord-akairo');
-const { RoleManager } = require('discord.js');
 const ms = require('ms')
 
 class MuteCommand extends Command {
