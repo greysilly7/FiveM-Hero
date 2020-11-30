@@ -47,7 +47,7 @@ class PlayTimeCommand extends Command {
                 .addField('Minutes:', `\`\`${user1.playtime}\`\``)
                 .addField('Hours:', `\`\`${user1.steam}%\`\``)
                 .addField('Last Played:', `\`\`${user1.discord}\`\``)
-                .setThumbnail(message.author.displayAvatarURL());
+                .setThumbnail(args.member.displayAvatarURL());
             return message.util.send(embed)
         } 
 	}
