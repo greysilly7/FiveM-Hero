@@ -26,22 +26,19 @@ class PlayTimeCommand extends Command {
 
 	async exec(message, args) {
         await message.delete()
-        if (message.member.roles.cache.has('777325219101671430')) {
             if(args.member === null || args.member === undefined) {
-                return message.reply('Please specify a user to find a steam id of.')
-            }
-		    const user0 = await getUser(message.author.id)
-		    // console.log(await getUser(message.author.id));
-            const embed = this.client.util.embed()
-		        .setTitle(`${args.member.nickname}'s Information`)
-		        .setFooter(`${this.client.user.tag}`)
-		        .setTimestamp()
-		        .addField('Minutes:', `\`\`${user0.playtime}\`\``)
-                .addField('Hours:', `\`\`${user0.steam}%\`\``)
-                .addField('Last Played:', `\`\`${user0.discord}\`\``)
-		        .setThumbnail(message.author.displayAvatarURL());
-            return message.util.send(embed);
-        } else {
+                const user0 = await getUser(message.author.id)
+                // console.log(await getUser(message.author.id));
+                const embed = this.client.util.embed()
+                    .setTitle(`${args.member.nickname}'s Information`)
+                    .setFooter(`${this.client.user.tag}`)
+                    .setTimestamp()
+                    .addField('Minutes:', `\`\`${user0.playtime}\`\``)
+                    .addField('Hours:', `\`\`${user0.steam}%\`\``)
+                    .addField('Last Played:', `\`\`${user0.discord}\`\``)
+                    .setThumbnail(message.author.displayAvatarURL());
+                return message.util.send(embed);
+            } else {
             const user1 = await getUser(args.member.id);
             const embed = this.client.util.embed()
                 .setTitle(`${args.member.nickname}'s Information`)
