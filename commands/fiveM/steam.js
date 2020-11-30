@@ -49,7 +49,7 @@ class SteamCommand extends Command {
 module.exports = SteamCommand;
 
 const getUser = async (userID) => {
-	const userInfo = await fetch(`https://dev.fivempanel.com/api/v2/external/user?key=W3W9VQJQ2GDG3MKB6BXF&com=46C4A71648F21EC3D4DA5CE46C8EAB94&id=discord:${userID}`);
+	const userInfo = await fetch(`https://dev.fivempanel.com/api/v2/external/user?key=34GXCRPDWPJ63A3U9EW8WD&com=46C4A71648F21EC3D4DA5CE46C8EAB94&id=discord:${userID}`);
 	let json = await userInfo.json();
 	return json.data.user;
 }
