@@ -17,39 +17,41 @@ class PlayTimeCommand extends Command {
             ],
 			clientPermissions: ['SEND_MESSAGES'],
 			description: {
-				content: 'Finds your the steam id of a user',
+				content: 'Fetches your PlayTime',
 				usage: '!steam',
-				examples: ['!steam @M3']
+				examples: ['!steam @Greysilly7']
 			}
 		});
 	}
 
 	async exec(message, args) {
         await message.delete()
-        if (message.member.roles.cache.has('754485247160221867')){ 
-		
-            if(!args.member) {
+        if (message.member.roles.cache.has('777325219101671430')) {
+            if(args.member === null || args.member === undefined) {
                 return message.reply('Please specify a user to find a steam id of.')
             }
-		    const user = await getUser(args.member.id)
+		    const user0 = await getUser(message.author.id)
 		    // console.log(await getUser(message.author.id));
-            const tsembed = this.client.util.embed()
+            const embed = this.client.util.embed()
 		        .setTitle(`${args.member.nickname}'s Information`)
 		        .setFooter(`${this.client.user.tag}`)
 		        .setTimestamp()
-		        .addField('Minutes:', `\`\`${user.playtime}\`\``)
-                .addField('Hours:', `\`\`${user.steam}%\`\``)
-                .addField('Last Played:', `\`\`${user.discord}\`\``)
+		        .addField('Minutes:', `\`\`${user0.playtime}\`\``)
+                .addField('Hours:', `\`\`${user0.steam}%\`\``)
+                .addField('Last Played:', `\`\`${user0.discord}\`\``)
 		        .setThumbnail(message.author.displayAvatarURL());
-            return message.util.send(tsembed);
-        
+            return message.util.send(embed);
         } else {
-            const user2 = await getUser(args.member.id)
-            const ptembed = this.client.util.embed()
-                .setTitle(`${message.author.tag}'s Playetime`)
-                .setFooter(this.client.user.tag)
+            const user1 = await getUser(args.member.id);
+            const embed = this.client.util.embed()
+                .setTitle(`${args.member.nickname}'s Information`)
+                .setFooter(`${this.client.user.tag}`)
                 .setTimestamp()
-                .addField('Minutes:', `\`\`${user2.playtime}\`\``);
+                .addField('Minutes:', `\`\`${user1.playtime}\`\``)
+                .addField('Hours:', `\`\`${user1.steam}%\`\``)
+                .addField('Last Played:', `\`\`${user1.discord}\`\``)
+                .setThumbnail(message.author.displayAvatarURL());
+            return message.util.send(embed)
         } 
 	}
 }
