@@ -21,7 +21,7 @@ class PingCommand extends Command {
 	}
 
 	async exec(message, args) {
-		message.delete()
+		await message.delete()
 		if (args.lazyping) return message.util.send('Ping him yourself you lazy ass.');
 		return message.util.reply('Pong!').then(sent => {
 			const timeDiff = (sent.editedAt || sent.createdAt) - (message.editedAt || message.createdAt);

@@ -10,7 +10,7 @@ class InviteCommand extends Command {
            aliases: ['discord-invite'],
            clientPermissions: ['SEND_MESSAGES'],
            description: {
-               content: 'Gives a permanet invite to the server.',
+               content: 'Gives a permanent invite to the server.',
                usage: '',
                examples: ['']
            }
@@ -18,10 +18,10 @@ class InviteCommand extends Command {
     }
 
     // Here we put what code we want it to actually execute
-    exec(message) {
+    async exec(message) {
         const embed = this.client.util.embed()
-            .setAuthor(`${this.client.user.tag}`).setTitle(`Here is a invite to the discord server: ${settings.invite}.`).setThumbnail('https://cdn.discordapp.com/attachments/760853655192207381/768240668471590922/scdiscord.png');
-        message.delete();
+            .setAuthor(`${this.client.user.tag}`).setTitle(`Here is a invite to the discord server: ${settings.invite}.`);
+        await message.delete();
         return message.util.send(embed);
     }
 }

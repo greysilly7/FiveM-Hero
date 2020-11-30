@@ -1,5 +1,6 @@
 const { Command } = require('discord-akairo');
 const { RoleManager } = require('discord.js');
+const ms = require('ms')
 
 class MuteCommand extends Command {
 	constructor() {
@@ -26,7 +27,7 @@ class MuteCommand extends Command {
 	}
 
 	async exec(message, args) {
-		message.delete()
+		await message.delete()
         if (!message.member.guild.roles.cache.has('754478736606363699')) return message.util.send(`${message.author}, You don't have the permissions to use that command.`);
             
             if(!args.member){
@@ -36,11 +37,8 @@ class MuteCommand extends Command {
             if(!args.time) {
                 return message.util.send(`${message.author}, please specify an amount of time to mute someone.`);
             }
-
-            args.member.roles.remove('754491333955158116');
-            args.member.roles.add('777695398793838612');
                 
-            message.util.send(`${args.member} has been muted for ${ms(ms(args.time))}.`);
+            await message.util.send(`${args.member} has been muted for ${ms(ms(args.time))}.`);
             let muteRole = message.guild.roles.cache.find(role => role.name === 'muted');
             if (!muteRole) {
                 try {
@@ -52,8 +50,8 @@ class MuteCommand extends Command {
                           reason: 'Needed to mute someone and the roles was not here -FiveM-Hero',
                     });
 
-                    message.guild.channels.cache.forEach(async (channel, id) => {
-                        await channel.updateOverwrite(muterole, {
+                    message.guild.channels.cache.forEach( (channel) => {
+                        channel.updateOverwrite(muterole, {
                           SEND_MESSAGES: false,
                           ADD_REACTIONS: false,
                         });
@@ -67,7 +65,7 @@ class MuteCommand extends Command {
             setTimeout(async () => {
                 await args.member.roles.add('754491333955158116');
                 await args.member.roles.remove(muteRole.id);
-                args.member.message.send('You Have been unmuted.')
+                args.member.message.send('You Have been unmuted.');
             }, ms(args.time));
 	}
 }

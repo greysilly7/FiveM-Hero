@@ -59,7 +59,7 @@ class VolumeCommand extends Command {
           serverQueue.connection.dispatcher.setVolumeLogarithmic(args.volume / 100);
           embed.setDescription(`Set Volume to ${args.volume}`);
           embed.setThumbnail(this.client.user.displayAvatarURL());
-          message.util.send(embed);
+          await message.util.send(embed);
     }
 }
 

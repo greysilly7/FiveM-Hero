@@ -25,10 +25,10 @@ class SteamCommand extends Command {
 	}
 
 	async exec(message, args) {
-		message.delete()
+		await message.delete()
 		if (!message.member.roles.cache.has('754485247160221867')){ 
 			message.util.send(`Sorry ${message.author}, you don\'t have the permissions to use that command.`).then(m => m.delete({timeout: 5000}));
-		};
+		}
 		if(!args.member) {
 			return message.reply('Please specify a user to find a steam id of.')
 		}

@@ -10,13 +10,13 @@ class VerifyEmbedCommand extends Command {
     }
 
     async exec(message, args) {
-        message.delete();
+        await message.delete();
         const verifyEmbed = this.client.util.embed()
-            .setTitle(`You have been verified ${message.author.name}`)
-            .addField('Welcome to West Life Roleplay, We hope you have a great time!')
+            .setTitle(`You have been verified ${message.author.tag}`)
+            .addField('Welcome to West Life Roleplay, We hope you have a great time!', ' ' , true)
             .setColor('RANDOM');
-        message.member.roles.add('777325219101671430');
-        message.util.send(verifyEmbed);
+        await message.member.roles.add('777325219101671430');
+        await message.util.send(verifyEmbed);
     }
 }
 

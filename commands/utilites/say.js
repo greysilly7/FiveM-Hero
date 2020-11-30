@@ -21,19 +21,17 @@ class SayCommand extends Command {
 	}
 
 	async exec(message, args) {
-		message.delete()
+		await message.delete()
         const sayembed = this.client.util.embed()
-        	.setTitle(`${message.author.tag} Say's`);
-        	sayembed.setDescription(args.message);
-        	sayembed.setThumbnail('https://media.discordapp.net/attachments/759629923811065886/765087779016278016/scdiscord.png');
-        	sayembed.setTimestamp();
-        	sayembed.setFooter(`${this.client.user.tag}`)
+        	.setTitle(`${message.author.tag} Say's`)
+			.setDescription(args.message)
+        	.setTimestamp()
+        	.setFooter(`${this.client.user.tag}`);
 
         if (!args.message) {
-            return message.util.send(`${message.auhtor}, Please specify something to say through me.`).then(m => m.delete({timeout: 5000}));
+            return message.util.send(`${message.author}, Please specify something to say through me.`).then(m => m.delete({timeout: 5000}));
         }
-
-        message.channel.send(sayembed)
+        await message.util.send(sayembed)
 	}
 }
 

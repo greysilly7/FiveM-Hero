@@ -22,7 +22,7 @@ class SuggestCommand extends Command {
     }
 
     async exec(message, args) {
-        message.delete()
+        await message.delete()
 
         if (!args.suggest) {
             return message.reply('Please state what you want to suggest.').then(m => m.delete({timeout: 5000}));

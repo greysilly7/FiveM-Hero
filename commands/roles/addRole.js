@@ -30,7 +30,7 @@ class AddRoleCommand extends Command {
 
     // Here we put what code we want it to actually execute
 	async exec(message, args) {
-		message.delete();
+		await message.delete();
 		if (message.member.roles.cache.has('754485247160221867')){
 
 			if (!args.member) {
@@ -63,8 +63,8 @@ class AddRoleCommand extends Command {
 				.setColor('GREEN');
                 
             if (!args.member.roles.cache.has(args.roleid)) {
-                args.member.roles.add(args.roleid);
-                message.util.send(removeroleEmbed);
+                await args.member.roles.add(args.roleid);
+                await message.util.send(removeroleEmbed);
 			}
 		}
     }

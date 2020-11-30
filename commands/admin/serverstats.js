@@ -10,7 +10,7 @@ class ServerStatsCommand extends Command {
     }
 
     async exec(message, args) {
-        message.delete()
+        await message.delete()
         if (message.member.roles.cache.has('754474630953304116')) {
             
         } else {

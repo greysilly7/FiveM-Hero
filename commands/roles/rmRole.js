@@ -30,8 +30,7 @@ class RemoveRoleCommand extends Command {
 
     // Here we put what code we want it to actually execute
 	async exec(message, args) {
-		
-		message.delete();
+		await message.delete();
 	
 			if (!args.member) {
 				return message.reply('You need to specify a user to remove a role from.');
@@ -62,8 +61,8 @@ class RemoveRoleCommand extends Command {
 				.setColor('RED');
 				
 			if (args.member.roles.cache.has(args.roleid)) {
-				args.member.roles.remove(args.roleid);
-				message.util.send(removeroleEmbed);
+				await args.member.roles.remove(args.roleid);
+				await message.util.send(removeroleEmbed);
 			}
         }
     }

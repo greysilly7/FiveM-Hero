@@ -17,12 +17,13 @@ class BugCommand extends Command {
                 content: 'Put\'s a bug into the bugs channel',
                 usage: '!bug',
                 examples: ['!bug cars wont spawn']
-            }
+            },
+            lock: true
         });
     }
 
     async exec(message, args) {
-        message.delete()
+        await message.delete()
 
         if (!args.suggest) {
             return message.reply('Please state what you want to suggest.').then(m => m.delete({timeout: 5000}));

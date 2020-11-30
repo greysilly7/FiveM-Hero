@@ -5,19 +5,20 @@ const { settings } = require('../../config.json')
 class RestartCommand extends Command {
     constructor() {
         super('restart', {
-           aliases: ['r'],
-           channel: 'guild',
-        description: {
-            content: 'Shows the server restarting status',
-            usage: '!r',
-            examples: ['!r']
-        },
-        category: 'admin'
+            aliases: ['r'],
+            channel: 'guild',
+            description: {
+                content: 'Shows the server restarting status',
+                usage: '!r',
+                examples: ['!r']
+            },
+            category: 'admin',
+            lock: true
         });
     }
 
     async exec(message, args) {
-        message.delete();
+        await message.delete();
             if (message.member.roles.cache.has('754474630953304116')) {
                     message.guild.channels.cache.get('754504502815621191').send(`Server is restarting. (${message.author.tag})`);
             } else {

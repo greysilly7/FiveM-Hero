@@ -29,7 +29,7 @@ class PurgeCommand extends Command {
         	// So we get our messages, and delete them. Simple enough, right?
         	let fetched = await message.channel.messages.fetch({limit: deleteCount});
 			message.channel.bulkDelete(fetched)
-			return message.util.send(`Succesfully deleted ${deleteCount} messages.`).then(m => m.delete({timeout: 5000})).catch((error) => message.reply(`Couldn't delete messages because of: ${error}`));
+			return message.util.send(`Successfully deleted ${deleteCount} messages.`).then(m => m.delete({timeout: 5000})).catch((error) => message.reply(`Couldn't delete messages because of: ${error}`));
 	}
 }
 

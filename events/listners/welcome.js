@@ -16,15 +16,15 @@ class WelcomeListener extends Listener {
 
     // Here we put what code we want it to actually execute
     async exec(member) {
-            const welcomeEmbed = new MessageEmbed();
-            welcomeEmbed.setTitle(`${member.user.tag} has joined!`);
-            welcomeEmbed.setColor('GREEN');
-            welcomeEmbed.setDescription(`Welcome ${member.user.tag} to SouthCity Roleplay.`);
-            welcomeEmbed.setThumbnail(member.user.displayAvatarURL());
-            welcomeEmbed.setFooter(`SouthCity Roleplay | FiveM-Hero`);
-            welcomeEmbed.setTimestamp();
-            welcomeEmbed.setImage('https://media.discordapp.net/attachments/754507634996019233/759716404638908426/scteamspeak.png')
-            welcomeEmbed.addField('Account Created', `\`\`${new Date(member.user.createdTimestamp).toLocaleString([], { hour12: true})}\`\``);
+            const welcomeEmbed = this.client.util.embed()
+                .setTitle(`${member.user.tag} has joined!`)
+                .setColor('GREEN')
+                .setDescription(`Welcome ${member.user.tag} to West Life Roleplay.`)
+                .setThumbnail(member.user.displayAvatarURL())
+                .setFooter(`West Life Roleplay | FiveM-Hero`)
+                .setTimestamp()
+                // .setImage('')
+            .addField('Account Created', `\`\`${new Date(member.user.createdTimestamp).toLocaleString([], { hour12: true})}\`\``);
             return this.client.guilds.cache.get('754470039373217892').channels.cache.get('754474499969122394').send(welcomeEmbed)
     }
 }

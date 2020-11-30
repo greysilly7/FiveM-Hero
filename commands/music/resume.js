@@ -32,7 +32,7 @@ class ResumeCommand extends Command {
             return message.util.send(embed);
         }
         embed.setDescription('There is nothing paused that i can resume');
-        message.util.send(embed);
+        await message.util.send(embed);
     }
 }
 

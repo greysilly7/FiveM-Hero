@@ -61,7 +61,7 @@ class SkipCommand extends Command {
           serverQueue.connection.dispatcher.end();
           embed.setDescription('✔ | Skipping The Song');
           embed.setThumbnail(this.client.user.displayAvatarURL());
-          message.util.send(embed);
+          await message.util.send(embed);
         };
 	}
 

@@ -36,7 +36,7 @@ class LoopCommand extends Command {
         // eslint-disable-next-line max-len
         embed.setDescription(`Loop is now **${serverQueue.loop ? 'Enabled' : 'Disabled'}**`);
         embed.setThumbnail(this.client.user.displayAvatarURL());
-        message.util.send(embed);
+        await message.util.send(embed);
 	}
 }
 

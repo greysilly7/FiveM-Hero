@@ -3,6 +3,9 @@ const {MessageEmbed} = require('discord.js');
 
 module.exports = {
   async play(song, message) {
+    const stream = await ytdlDiscord(song.url, {
+      highWaterMark: 1 << 25,
+    });
     const queue = message.client.queue.get(message.guild.id);
     const embed = new MessageEmbed();
 
@@ -16,13 +19,10 @@ module.exports = {
     }
 
     try {
-      var stream = await ytdlDiscord(song.url, {
-        highWaterMark: 1 << 25,
-      });
     } catch (error) {
       if (queue) {
         queue.songs.shift();
-        module.exports.play(queue.songs[0], message);
+        await module.exports.play(queue.songs[0], message);
       }
 
       if (error.message.includes === 'copyright') {

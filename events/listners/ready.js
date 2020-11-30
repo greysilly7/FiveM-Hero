@@ -1,7 +1,4 @@
 const { Listener } = require('discord-akairo');
-const akairoVersion = require('discord-akairo').version;
-const djsVersion = require('discord.js').version;
-const pjson = require('../../package.json');
 const { settings, game } = require('../../config.json');
 
 class ReadyListener extends Listener {
@@ -32,10 +29,10 @@ class ReadyListener extends Listener {
 		console.log(`${this.client.readyAt}`);
 
 		//Bot status
-		setStatus(this.client);
+		await setStatus(this.client);
 		// Change status every 30 minutes
 		setInterval(async () => {
-			setStatus(this.client);
+			await setStatus(this.client);
 		}, 1800000);
 
 		async function setStatus(client) {
@@ -47,14 +44,14 @@ class ReadyListener extends Listener {
 				let status = game.watching[Math.floor((Math.random() * game.watching.length))];
 				status = status.replace('${prefix}', settings.prefix[0]);
 						
-				client.user.setActivity(`${status} | My prefix is: ${settings.prefix[0]} `, { type: 'WATCHING' });
+				await client.user.setActivity(`${status} | My prefix is: ${settings.prefix[0]} `, {type: 'WATCHING'});
 			} else if (random === 1) { // Random "Playing" status taken from json
 				console.log('Status type: \x1b[32mPlaying\x1b[0m');
 				
 				let status = game.playing[Math.floor((Math.random() * game.playing.length))];
 				status = status.replace('${prefix}', settings.prefix[0]);
 						
-				client.user.setActivity(`${status} | My prefix is: ${settings.prefix[0]}`, { type: 'PLAYING' });
+				await client.user.setActivity(`${status} | My prefix is: ${settings.prefix[0]}`, {type: 'PLAYING'});
 			} /* else if (random === 2 && owner.presence.activities != null) { // Bot owner status
 				console.log('Status type: \x1b[32mCopying owner status\x1b[0m');
 				// Get elapsed time from when the activity started		

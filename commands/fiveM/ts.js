@@ -19,7 +19,7 @@ class TrustscoreCommand extends Command {
 	}
 
 	async exec(message) {
-		message.delete()
+		await message.delete()
 		const user = await getUser(message.author.id)
 		// console.log(await getUser(message.author.id));
 		const tsembed = this.client.util.embed()

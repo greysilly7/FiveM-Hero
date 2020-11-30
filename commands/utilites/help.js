@@ -52,9 +52,7 @@ class HelpCommand extends Command {
 	
 	}
 	
- 
-	
-	exec(message, { command }) {
+	async exec(message, { command }) {
 	
 		if (!command) return this.execCommandList(message);
 	
@@ -149,21 +147,15 @@ class HelpCommand extends Command {
 		}
 	
  
-		message.delete()
+		await message.delete()
 		return message.channel.send({ embed });
 	
 	}
 	
- 
-	
 	async execCommandList(message) {
-	
 		const embed = this.client.util.embed()
-	
 			.setColor(message.member ? message.member.displayHexColor : 'NAVY')
-	
 			.addField('Command List',
-	
 				[
 	
 					'This is a list of commands.',
@@ -171,17 +163,13 @@ class HelpCommand extends Command {
 					`To view details for a command, do \`${this.client.commandHandler.prefix[0]}help <command>\`.`
 	
                 ])
-	
                 .setFooter(`All the available prefix: ! `);
-	
- 
 	
 		for (const category of this.handler.categories.values()) {
 	
 			let title;
 	
-			if (message.author.id == this.client.ownerID) {
-	
+			if (message.author.id === this.client.ownerID) {
 				title = {
 	
 					fivem: '�\u2000FFiveM Commands',
@@ -197,7 +185,6 @@ class HelpCommand extends Command {
 					owner: '🛠️\u2000Owner',
 	
 				}[category.id];
-	
 			} else {
 	
 				title = {
@@ -216,17 +203,11 @@ class HelpCommand extends Command {
 	
 			}
 	
- 
-	
 			if (title) embed.addField(title, `\`${category.map(cmd => cmd.aliases[0]).join('` `')}\``);
 	
 		}
-	
- 
-	
+
 		const shouldReply = message.guild && message.channel.permissionsFor(this.client.user).has('SEND_MESSAGES');
-	
- 
 	
 		try {
 	
@@ -239,13 +220,9 @@ class HelpCommand extends Command {
 			if (shouldReply) return message.channel.send({ embed });
 	
 		}
-	
- 
-	
 		return undefined;
 	
 	}
-	
 }
 	
  

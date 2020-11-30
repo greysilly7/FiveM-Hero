@@ -5,31 +5,31 @@ const { settings } = require('../../config.json')
 class KickCommand extends Command {
     constructor() {
         super('kick', {
-           aliases: ['kick'],
-           channel: 'guild',
-           args: [
-            {
-                id: 'member',
-                type: 'member'
+            aliases: ['kick'],
+            channel: 'guild',
+            args: [
+                {
+                    id: 'member',
+                    type: 'member'
+                },
+                {
+                    id: 'reason',
+                    type: 'string',
+                    match: 'rest',
+                    default: 'No reason provided'
+               }
+            ],
+            description: {
+                content: 'Kicks a user',
+                usage: 'kick {User} {reason}',
+                examples: ['!kick @greysilly7 this is just a example calm down dude!']
             },
-            {
-               id: 'reason',
-               type: 'string',
-               match: 'rest',
-               default: 'No reason provided'
-            }
-        ],
-        description: {
-            content: 'Kicks a user',
-            usage: 'kick {User} {reason}',
-            examples: ['!kick @greysilly7 this is just a example calm down dude!']
-        },
-        category: 'admin'
+            category: 'admin'
         });
     }
 
     async exec(message, args) {
-        message.delete();
+        await message.delete();
         const allowedRoles = ['754478524248752159', '754475345931141133', '754475146038870167', '754474630953304116']
             if (allowedRoles.some(id => message.member.roles.cache.has(id))) {
                 const member = message.mentions.members.first() || message.guild.members.cache.get(args.member);
@@ -47,7 +47,7 @@ class KickCommand extends Command {
                 // Now, time for a swift kick in the nuts!
                 await member.kick(reason)
                     .catch((error) => message.reply(`Sorry ${message.author} I couldn't kick because of: ${error}`));
-                message.util.send(`${member.user.tag} has been kicked by ${message.author} | Reason:  ${reason}`);
+                await message.util.send(`${member.user.tag} has been kicked by ${message.author} | Reason:  ${reason}`);
             } else {
                 return message.util.send(`Sorry ${message.author}, you do not have the permission to run this command!`);
             }
