@@ -33,8 +33,8 @@ class TrustscoreCommand extends Command {
 			.setThumbnail(message.author.displayAvatarURL());
 
 		if (user.user.trustscore > 90 && user.commends.length > 1 && !message.member.roles.cache.has('784258845228662814')) {
-			message.member.roles.add('784258845228662814')
-			return message.util.send(this.client.util.embed().setTitle('Congratulations!').setDescription('You have earned Civillian II'));
+			message.member.roles.add('784258845228662814');
+			return message.util.send(this.client.util.embed().setTitle('Congratulations!').setDescription('You have earned Civillian II').setColor('GREEN'));
 		} else return message.util.send(tsembed).then(m => m.delete({timeout: 15000}));
 	}
 }
