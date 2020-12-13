@@ -10,10 +10,10 @@ class InviteCommand extends Command {
            aliases: ['discord-invite'],
            clientPermissions: ['SEND_MESSAGES'],
            description: {
-               content: 'Gives a permanent invite to the server.',
-               usage: '',
-               examples: ['']
-           }
+                content: 'Gives a permanent invite to the server.',
+                usage: '',
+                examples: ['']
+           }, lock: true
         });
     }
 

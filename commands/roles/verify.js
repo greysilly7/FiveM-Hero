@@ -16,7 +16,7 @@ class VerifyEmbedCommand extends Command {
             .addField('Welcome to West Life Roleplay, We hope you have a great time!', '\u2800' , true)
             .setColor('RANDOM');
         await message.member.roles.add('777325219101671430');
-        await message.util.send(verifyEmbed);
+        return message.util.send(verifyEmbed);
     }
 }
 

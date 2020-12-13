@@ -18,6 +18,7 @@
     "memorystore": "^1.6.4",
     "mkdirp": "^1.0.4",
     "ms": "^2.1.2",
+    "node-cron": "^2.0.3",
     "node-fetch": "^2.6.1",
     "opusscript": "0.0.7",
     "passport": "^0.4.1",
