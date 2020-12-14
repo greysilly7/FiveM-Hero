@@ -22,8 +22,8 @@ class WelcomeListener extends Listener {
                 .setTimestamp()
                 // .setImage('')
             .addField('Account Created', `\`\`${new Date(member.user.createdTimestamp).toLocaleString([], { hour12: true})}\`\``);
-            await member.guild.channels.cache.get('754474499969122394').send(welcomeEmbed)
-            return args.member.roles.add('784262738791759883');
+            await member.user.guild.channels.cache.get('754474499969122394').send(welcomeEmbed)
+            return member.roles.add('784262738791759883');
 
     }
 }
